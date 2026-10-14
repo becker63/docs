@@ -1,0 +1,88 @@
+{
+  "projectType": "cli-tool",
+  "projectName": "SearchBench",
+  "projectDescription": "An evaluation harness for comparing agent-facing interfaces — such as code-search tools and MCP servers — over benchmark tasks to determine which interface makes coding agents perform better.",
+  "theme": "luma",
+  "primaryColor": "#2563EB",
+  "lightColor": "#DBEAFE",
+  "darkColor": "#1E3A8A",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/overview",
+              "concepts/rounds",
+              "concepts/bundles"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/first-round",
+              "guides/continuation-rounds",
+              "guides/reading-bundles",
+              "guides/writing-objectives"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/round-manifests",
+              "configuration/workspace-seeds",
+              "configuration/objectives"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "reference/bundle-format",
+              "reference/decision-values",
+              "reference/buck-targets",
+              "reference/environment-setup"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Pkl-based round manifests for declaring incumbent vs challenger interface comparisons",
+    "Code localization game using LCA bug-localization dataset slices",
+    "Immutable evidence bundles recording round inputs, reports, scores, and decisions",
+    "Continuation rounds that amend prior bundle state for iterative optimization",
+    "Candidate workspace sandboxing via local_path or buck_descriptor providers",
+    "Pkl-defined scoring objectives computed over structured evidence",
+    "PROMOTE_CHALLENGER / REVIEW / REJECT decisions per round",
+    "Buck-based run entrypoints for reproducible round execution"
+  ],
+  "publicApiSurface": [
+    "Pkl round manifest schema (configs/schema/SearchBenchRound.pkl)",
+    "game.defineFromScratch(roundId) — start a new round",
+    "game.jcodemunch() — incumbent interface",
+    "game.iterativeContext(policyPath) — challenger interface",
+    "game.lca(lang, split, n) — dataset slice",
+    "game.fakeEvaluator() — deterministic offline evaluator",
+    "game.objective(path) — scoring objective reference",
+    "game.fakeOptimizer() — deterministic optimizer for continuation rounds",
+    "amends continuation.pkl — continuation round authoring",
+    "buck2 test //:check — fast validation gate",
+    "buck2 test //:check_full — full validation gate",
+    "buck2 run //configs/rounds/<name>:run — single round execution",
+    "buck2 run //configs/rounds/<name>:evaluate_n — multi-attempt promotion evaluation",
+    "report.json — canonical bundle summary",
+    "decision.json — PROMOTE_CHALLENGER / REVIEW / REJECT verdict",
+    "continuation.pkl — input for next round manifest",
+    "objective.json — scored Pkl objective output"
+  ]
+}
